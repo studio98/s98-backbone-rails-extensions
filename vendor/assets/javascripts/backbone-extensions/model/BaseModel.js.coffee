@@ -23,6 +23,20 @@ class S98.Models.BaseModel extends Backbone.Model
     options?.error = @handle_error
     super
 
+  toJSON: ->
+    if @_isSerializing?
+      @id || @cid
+
+    @_isSerializing = true
+    json = _.clone(@attributes)
+    _.each(json, (value,name) ->
+      if value
+        _.isFunction(value.toJSON) && (json[name] = value.toJSON())
+    )
+    @_isSerializing = false
+    json
+
+
   handle_error: (xhr, status, thrown) ->
     console.log xhr
     console.log status
