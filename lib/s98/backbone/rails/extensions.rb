@@ -4,8 +4,8 @@ module S98
   module Backbone
     module Rails
       module Extensions
-	class Engine < ::Rails::Engine
-	end		
+        class Engine < ::Rails::Engine
+        end
       end
     end
   end

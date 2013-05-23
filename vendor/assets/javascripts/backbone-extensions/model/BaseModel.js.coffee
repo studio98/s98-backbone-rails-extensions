@@ -21,11 +21,11 @@ class S98.Models.BaseModel extends Backbone.Model
   sync: (method,object,options) ->
     console.log 'Just called sync'
     options?.error = @handle_error
-    super
+    super method, object, options
 
   toJSON: ->
     if @_isSerializing?
-      @id || @cid
+      return @id || @cid
 
     @_isSerializing = true
     json = _.clone(@attributes)
