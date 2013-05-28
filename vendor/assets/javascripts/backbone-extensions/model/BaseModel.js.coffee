@@ -24,16 +24,11 @@ class S98.Models.BaseModel extends Backbone.Model
     super(method, object, options)
 
   toJSON: ->
-    if @_isSerializing?
-      return @id || @cid
-
-    @_isSerializing = true
     json = _.clone(@attributes)
     _.each(json, (value,name) ->
       if value
         _.isFunction(value.toJSON) && (json[name] = value.toJSON())
     )
-    @_isSerializing = false
     json
 
 
