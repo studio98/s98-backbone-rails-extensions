@@ -20,7 +20,7 @@ class S98.Models.BaseModel extends Backbone.Model
 
   sync: (method,object,options) ->
     console.log 'Just called sync'
-    options?.error = @handle_error
+    options?.error = @handle_error unless options?.error?
     super(method, object, options)
 
   toJSON: ->
